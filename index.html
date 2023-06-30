@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real Estate Deal Analyzer</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>Real Estate Deal Analyzer</h1>
+
+  <form id="dealForm">
+    <label for="askingPrice">Asking Price:</label>
+    <input type="number" id="askingPrice" required><br>
+
+    <label for="arv">ARV:</label>
+    <input type="number" id="arv" required><br>
+
+    <label for="squareFeet">Square Feet:</label>
+    <input type="number" id="squareFeet" required><br>
+
+    <label for="closingCostPercentage">Estimated Closing Cost (% of ARV):</label>
+    <input type="number" id="closingCostPercentage" required><br>
+
+    <label for="carryingCostPercentage">Estimated Carrying Cost (% of ARV):</label>
+    <input type="number" id="carryingCostPercentage" required><br>
+
+    <label for="wholesaleFee">Desired Wholesale Fee:</label>
+    <input type="number" id="wholesaleFee" required><br>
+
+    <label for="rehabCost">Rehab Cost:</label>
+    <select id="rehabCost">
+      <option value="light">Light Rehab</option>
+      <option value="average">Average Rehab</option>
+      <option value="heavy">Heavy Rehab</option>
+    </select><br>
+
+    <label for="profitPercentage">Desired Profit (% of ARV):</label>
+    <input type="number" id="profitPercentage" required><br>
+
+    <button type="submit">Analyze Deal</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById('dealForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Get input values
+      var askingPrice = parseFloat(document.getElementById('askingPrice').value);
+      var arv = parseFloat(document.getElementById('arv').value);
+      var squareFeet = parseFloat(document.getElementById('squareFeet').value);
+      var closingCostPercentage = parseFloat(document.getElementById('closingCostPercentage').value);
+      var carryingCostPercentage = parseFloat(document.getElementById('carryingCostPercentage').value);
+      var wholesaleFee = parseFloat(document.getElementById('wholesaleFee').value);
+      var rehabCost = document.getElementById('rehabCost').value;
+      var profitPercentage = parseFloat(document.getElementById('profitPercentage').value);
+
+      // Calculate rehab cost based on square feet
+      var rehabCostAmount = 0;
+      if (squareFeet < 1500) {
+        if (rehabCost === 'light') rehabCostAmount = 18750;
+        else if (rehabCost === 'average') rehabCostAmount = 37500;
+        else if (rehabCost === 'heavy') rehabCostAmount = 75000;
+      } else if (squareFeet >= 1501 && squareFeet <= 2500) {
+        if (rehabCost === 'light') rehabCostAmount = 25000;
+        else if (rehabCost === 'average') rehabCostAmount = 50000;
+        else if (rehabCost === 'heavy') rehabCostAmount = 100000;
+      } else if (squareFeet >= 2501 && squareFeet <= 3500) {
+        if (rehabCost === 'light') rehabCostAmount = 37500;
+        else if (rehabCost === 'average') rehabCostAmount = 62500;
+        else if (rehabCost === 'heavy') rehabCostAmount = 125000;
+      } else if (squareFeet >= 3501 && squareFeet <= 5000) {
+        if (rehabCost === 'light') rehabCostAmount = 50000;
+        else if (rehabCost === 'average') rehabCostAmount = 87500;
+        else if (rehabCost === 'heavy') rehabCostAmount = 156250;
+      } else if (squareFeet > 5000) {
+        if (rehabCost === 'light') rehabCostAmount = 62500;
+        else if (rehabCost === 'average') rehabCostAmount = 112500;
+        else if (rehabCost === 'heavy') rehabCostAmount = 187500;
+      }
+
+      // Calculate maximum allowable offer
+      var closingCost = arv * (closingCostPercentage / 100);
+      var carryingCost = arv * (carryingCostPercentage / 100);
+      var profitAmount = arv * (profitPercentage / 100);
+      var maximumOffer = arv - closingCost - carryingCost - wholesaleFee - rehabCostAmount - profitAmount;
+
+      // Display the result
+      document.getElementById('result').innerHTML = 'Maximum Allowable Offer: $' + maximumOffer.toFixed(2);
+    });
+  </script>
+</body>
+</html>
