@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ARV Calculator</title>
+  <script>
+    function addPrice() {
+      var priceInput = document.getElementById('priceInput');
+      var price = priceInput.value;
+
+      if (price !== '') {
+        var priceList = document.getElementById('priceList');
+        var newItem = document.createElement('li');
+        newItem.textContent = price;
+        priceList.appendChild(newItem);
+
+        priceInput.value = '';
+      }
+    }
+
+    function calculateAverage() {
+      var priceList = document.getElementById('priceList');
+      var prices = priceList.getElementsByTagName('li');
+      var sum = 0;
+
+      for (var i = 0; i < prices.length; i++) {
+        sum += parseFloat(prices[i].textContent);
+      }
+
+      var average = sum / prices.length;
+
+      document.getElementById('averageOutput').textContent = average.toFixed(2);
+    }
+  </script>
+</head>
+<body>
+  <h1>ARV Calculator</h1>
+  
+  <label for="priceInput">Enter house price:</label>
+  <input type="number" id="priceInput" />
+  <button onclick="addPrice()">Add Price</button>
+  
+  <ul id="priceList"></ul>
+  
+  <button onclick="calculateAverage()">Calculate Average</button>
+  
+  <p>Average ARV: <span id="averageOutput"></span></p>
+</body>
+</html>
