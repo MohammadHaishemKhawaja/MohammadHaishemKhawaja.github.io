@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Script Generator for Wholesale Real Estate</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>AI Script Generator for Wholesale Real Estate</h1>
+
+    <label for="category">Select Script Category:</label>
+    <select id="category">
+        <option value="buyer">Buyers</option>
+        <option value="seller">Sellers</option>
+    </select>
+
+    <label for="name">Enter your name:</label>
+    <input type="text" id="name">
+
+    <label for="state">Enter your state:</label>
+    <input type="text" id="state">
+
+    <button onclick="generateScript()">Generate Script</button>
+
+    <h2>Generated Script:</h2>
+    <p id="script"></p>
+
+    <script>
+        function generateScript() {
+            var category = document.getElementById("category").value;
+            var name = document.getElementById("name").value;
+            var state = document.getElementById("state").value;
+            var script = "";
+
+            if (category === "buyer") {
+                script += generateBuyerIntroduction(name, state);
+                script += "\n\n";
+                script += "Hello, my name is " + name + ". I'm a wholesaler with access to properties below market value in " + state + ". I'm calling to learn more about your buying criteria and see if we can potentially work together. Please take your time to answer the following questions:";
+                script += "\n\n";
+                script += generateBuyerQuestions();
+                script += "\n\n";
+                script += generateBuyerConclusion();
+            } else if (category === "seller") {
+                script += generateSellerIntroduction(name, state);
+                script += "\n\n";
+                script += "Hello, my name is " + name + ". I'm a real estate professional specializing in buying houses in " + state + ". I'm interested in learning more about your property and your situation. Would you be open to answering a few questions? Your input will help me provide you with the best possible offer.";
+                script += "\n\n";
+                script += generateSellerQuestions();
+                script += "\n\n";
+                script += generateSellerConclusion();
+            }
+
+            document.getElementById("script").innerText = script;
+        }
+
+        function generateBuyerIntroduction(name, state) {
+            var intros = [
+                "Hello, my name is " + name + ". I'm a wholesaler with access to properties below market value in " + state + ".",
+                "Hi there, I'm " + name + ", a local real estate expert in " + state + " specializing in finding great investment opportunities.",
+                "Nice to meet you! I'm " + name + ", and I work with investors looking for profitable deals in " + state + ".",
+                "Good day! I'm " + name + ", a real estate professional with exclusive access to discounted properties in " + state + ".",
+                "Greetings! I'm " + name + ", and I have a wide range of investment opportunities available in " + state + ".",
+                "Hi, I'm " + name + ", and I specialize in connecting buyers with undervalued properties in " + state + ".",
+                "Hello, my name is " + name + ". I'm here to help you discover lucrative real estate deals in " + state + ".",
+                "Hi, I'm " + name + ", and I have an extensive inventory of investment properties in " + state + ".",
+                "Hey there, I'm " + name + ", and I'm dedicated to helping investors find high-yield properties in " + state + ".",
+                "Hi, I'm " + name + ", and I have access to off-market properties in " + state + " that could be a perfect fit for you."
+            ];
+
+            return intros[Math.floor(Math.random() * intros.length)];
+        }
+
+        function generateSellerIntroduction(name, state) {
+            var intros = [
+                "Hello, my name is " + name + ". I'm interested in buying houses in " + state + ".",
+                "Hi there, I'm " + name + ", a local real estate investor in " + state + " looking to purchase properties.",
+                "Nice to meet you! I'm " + name + ", and I specialize in helping homeowners sell their properties quickly in " + state + ".",
+                "Good day! I'm " + name + ", and I'm actively looking for properties to buy in " + state + ".",
+                "Greetings! I'm " + name + ", and I'm interested in purchasing properties in " + state + ".",
+                "Hi, I'm " + name + ", and I'm an experienced real estate professional interested in properties in " + state + ".",
+                "Hello, my name is " + name + ". I'm in the business of purchasing properties in " + state + " from motivated sellers.",
+                "Hi, I'm " + name + ", and I'm a local investor with a strong interest in properties in " + state + ".",
+                "Hey there, I'm " + name + ", and I'm actively seeking houses to purchase in " + state + ".",
+                "Hi, I'm " + name + ", and I specialize in helping homeowners in " + state + " sell their properties quickly and hassle-free."
+            ];
+
+            return intros[Math.floor(Math.random() * intros.length)];
+        }
+
+        function generateBuyerQuestions() {
+            var questions = [
+                "What specific neighborhoods or areas are you interested in?",
+                "What is your preferred property type? (Single-family, multi-family, etc.)",
+                "What is the minimum number of bedrooms and bathrooms you require?",
+                "What is your target price range for properties?",
+                "What is your preferred level of repairs needed?",
+                "Are you looking for properties with tenants or vacant properties?",
+                "What is your desired return on investment (ROI)?",
+                "Are you open to properties that need cosmetic updates or major renovations?",
+                "What is your financing preference? Cash or financing?",
+                "What is your desired timeline for purchasing a property?",
+                "Are you open to purchasing properties with liens or title issues?",
+                "Do you have any specific criteria related to property size or lot size?",
+                "Are you interested in commercial or residential properties?",
+                "Do you have any preferences for property age or construction style?",
+                "Are you looking for distressed properties or properties in good condition?",
+                "Do you have any restrictions on property use or zoning requirements?"
+            ];
+
+            return shuffle(questions).slice(0, 8).join("\n\n");
+        }
+
+        function generateSellerQuestions() {
+            var questions = [
+                "What is your motivation for selling the property?",
+                "Are you facing any financial difficulties or time constraints?",
+                "Are you considering selling the property as-is or making repairs?",
+                "Do you have a desired timeline for selling the property?",
+                "Are there any specific conditions or contingencies you have for the sale?",
+                "What is your asking price or price expectation?",
+                "Have you had the property appraised recently?",
+                "Are there any liens or title issues associated with the property?",
+                "Have you listed the property with any other agents or wholesalers?",
+                "Are you open to creative financing options or seller financing?",
+                "What are the unique features or selling points of the property?",
+                "Is there any additional information or history about the property I should know?",
+                "What is the best way and time to contact you?",
+                "Are there any restrictions or legal considerations related to the property?",
+                "Are you interested in a quick cash sale or open to negotiation?"
+            ];
+
+            return shuffle(questions).slice(0, 8).join("\n\n");
+        }
+
+        function generateBuyerConclusion() {
+            var conclusions = [
+                "Thank you for taking the time to answer these questions. If I come across a deal that matches your criteria, I'll be sure to reach out to you.",
+                "It was great speaking with you. If I find any investment opportunities that align with your preferences, I'll keep you informed.",
+                "I appreciate your input. Rest assured, if I discover any properties that meet your requirements, I'll be in touch.",
+                "Thank you for sharing your buying criteria with me. Should I come across any properties that match your needs, I'll let you know.",
+                "I'm glad we had a chance to discuss your investment preferences. If any promising deals come my way, I'll be sure to notify you.",
+                "It was a pleasure learning more about your buying criteria. If I find any suitable properties, I'll be sure to reach out to you.",
+                "Thank you for providing valuable insights into your investment preferences. I'll keep you informed if any opportunities arise.",
+                "I appreciate your time in answering these questions. If any properties that meet your criteria become available, I'll notify you.",
+                "Thank you for sharing your buying criteria. I'll make sure to keep an eye out for opportunities that match your preferences.",
+                "It was great hearing about your investment goals. If I come across any properties that meet your requirements, I'll be sure to contact you."
+            ];
+
+            return conclusions[Math.floor(Math.random() * conclusions.length)];
+        }
+
+        function generateSellerConclusion() {
+            var conclusions = [
+                "Thank you for taking the time to answer these questions. I'll discuss your property and your situation with my team, and we'll be in touch soon with a cash offer.",
+                "It was a pleasure speaking with you. I'll share the details you provided about your property with my team, and we'll evaluate it for a potential cash offer.",
+                "I appreciate your openness in answering these questions. I'll discuss your property with my team, and we'll reach out to you with a cash offer if it fits our criteria.",
+                "Thank you for your willingness to answer these questions. I'll present the details of your property to my team, and we'll get back to you soon with a cash offer.",
+                "It was great learning more about your property. I'll discuss it with my team, and we'll assess the possibilities for a cash offer. You can expect to hear from us soon.",
+                "I'm glad we had the opportunity to discuss your property. I'll take the information you provided to my team, and we'll consider making you a cash offer in the near future.",
+                "Thank you for providing valuable insights into your property and your situation. I'll present the details to my team, and we'll be in touch with a cash offer if it aligns with our criteria.",
+                "I appreciate your time in answering these questions. I'll discuss your property with my team, and we'll evaluate it for a potential cash offer. Expect to hear from us soon.",
+                "Thank you for sharing your property information with me. I'll discuss it with my team, and we'll reach out to you in the coming days with a cash offer, if appropriate.",
+                "It was great hearing about your property. I'll present the details to my team, and we'll consider making you a cash offer. You can expect to hear from us soon."
+            ];
+
+            return conclusions[Math.floor(Math.random() * conclusions.length)];
+        }
+
+        // Function to shuffle an array
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+            return array;
+        }
+    </script>
+</body>
+</html>
