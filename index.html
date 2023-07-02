@@ -1,15 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Real Estate Deal Analyzer By Mohammad Khawaja</title>
-<link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Real Estate Deal Analyzer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background-color: #fff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #292b2c;
+        }
+        
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: auto;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+       
+        <form>
+            <div class="form-group">
+               
+                </select>
+            </div>
+           
+        </form>
   <h1>Real Estate Deal Analyzer By Mohammad Khawaja</h1>
+
 <button onclick="window.location.href = 'ARV.html';">ARV Calculator</button>
 <button onclick="window.location.href = 'roomCalculator.html';">Rooms Calculator</button>
 <button onclick="window.location.href = 'ai.html';">AI Script Generator</button>
-
 
   <form id="dealForm">
     <label for="askingPrice">Asking Price:</label>
